@@ -40,6 +40,7 @@ namespace Banco
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.botaoImpostos = new System.Windows.Forms.Button();
             this.botaoNovaConta = new System.Windows.Forms.Button();
             this.botaoTransferir = new System.Windows.Forms.Button();
             this.comboDestinoTransferencia = new System.Windows.Forms.ComboBox();
@@ -47,7 +48,9 @@ namespace Banco
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboContas = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.botaoImpostos = new System.Windows.Forms.Button();
+            this.textoBuscaTitular = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.botaoBusca = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -153,12 +156,22 @@ namespace Banco
             this.groupBox1.Controls.Add(this.textoSaldo);
             this.groupBox1.Controls.Add(this.textoTitular);
             this.groupBox1.Controls.Add(this.textoNumero);
-            this.groupBox1.Location = new System.Drawing.Point(22, 51);
+            this.groupBox1.Location = new System.Drawing.Point(31, 105);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(268, 255);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Conta";
+            // 
+            // botaoImpostos
+            // 
+            this.botaoImpostos.Location = new System.Drawing.Point(111, 226);
+            this.botaoImpostos.Name = "botaoImpostos";
+            this.botaoImpostos.Size = new System.Drawing.Size(75, 23);
+            this.botaoImpostos.TabIndex = 15;
+            this.botaoImpostos.Text = "Impostos";
+            this.botaoImpostos.UseVisualStyleBackColor = true;
+            this.botaoImpostos.Click += new System.EventHandler(this.botaoImpostos_Click);
             // 
             // botaoNovaConta
             // 
@@ -200,12 +213,15 @@ namespace Banco
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.botaoBusca);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.textoBuscaTitular);
             this.groupBox2.Controls.Add(this.comboContas);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Location = new System.Drawing.Point(251, 93);
+            this.groupBox2.Location = new System.Drawing.Point(235, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(352, 329);
+            this.groupBox2.Size = new System.Drawing.Size(352, 426);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Busca de Conta";
@@ -213,9 +229,9 @@ namespace Banco
             // comboContas
             // 
             this.comboContas.FormattingEnabled = true;
-            this.comboContas.Location = new System.Drawing.Point(134, 19);
+            this.comboContas.Location = new System.Drawing.Point(142, 19);
             this.comboContas.Name = "comboContas";
-            this.comboContas.Size = new System.Drawing.Size(75, 21);
+            this.comboContas.Size = new System.Drawing.Size(181, 21);
             this.comboContas.TabIndex = 10;
             this.comboContas.SelectedIndexChanged += new System.EventHandler(this.comboContas_SelectedIndexChanged);
             // 
@@ -228,15 +244,31 @@ namespace Banco
             this.label5.TabIndex = 11;
             this.label5.Text = "Escolha a conta";
             // 
-            // botaoImpostos
+            // textoBuscaTitular
             // 
-            this.botaoImpostos.Location = new System.Drawing.Point(187, 226);
-            this.botaoImpostos.Name = "botaoImpostos";
-            this.botaoImpostos.Size = new System.Drawing.Size(75, 23);
-            this.botaoImpostos.TabIndex = 15;
-            this.botaoImpostos.Text = "Impostos";
-            this.botaoImpostos.UseVisualStyleBackColor = true;
-            this.botaoImpostos.Click += new System.EventHandler(this.botaoImpostos_Click);
+            this.textoBuscaTitular.Location = new System.Drawing.Point(142, 46);
+            this.textoBuscaTitular.Name = "textoBuscaTitular";
+            this.textoBuscaTitular.Size = new System.Drawing.Size(100, 20);
+            this.textoBuscaTitular.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Busca por Titular";
+            // 
+            // botaoBusca
+            // 
+            this.botaoBusca.Location = new System.Drawing.Point(248, 44);
+            this.botaoBusca.Name = "botaoBusca";
+            this.botaoBusca.Size = new System.Drawing.Size(75, 23);
+            this.botaoBusca.TabIndex = 14;
+            this.botaoBusca.Text = "Buscar";
+            this.botaoBusca.UseVisualStyleBackColor = true;
+            this.botaoBusca.Click += new System.EventHandler(this.botaoBusca_Click);
             // 
             // Form1
             // 
@@ -276,6 +308,9 @@ namespace Banco
         private System.Windows.Forms.Button botaoTransferir;
         private System.Windows.Forms.Button botaoNovaConta;
         private System.Windows.Forms.Button botaoImpostos;
+        private System.Windows.Forms.Button botaoBusca;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textoBuscaTitular;
     }
 }
 

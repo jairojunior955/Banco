@@ -9,32 +9,48 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Caelum.Banco.Usuarios;
 using Banco.Contas;
+using Banco.Busca;
 
 namespace Banco
 {
     public partial class FormCadastroConta : Form
     {
+        private ICollection<string> devedores;
         private Form1 formPrincipal;
         public FormCadastroConta(Form1 formPrincipal)
         {
-            HashSet<string> devedores = new HashSet<string>();
-            devedores.Add("victor");
-            devedores.Add("osni");
-            string titular = textoTitular.Text;
-            bool ehDevedor = devedores.Contains(titular);
             this.formPrincipal = formPrincipal;
             InitializeComponent();
+
+            
+
+            GeradorDeDevedores gerador = new GeradorDeDevedores();
+            this.devedores = gerador.GeraLista();
         }
 
         private void botaoCadastro_Click(object sender, EventArgs e)
         {
-            ContaCorrente novaConta = new ContaCorrente();
-            novaConta.Titular = new Cliente(textoTitular.Text);
-            this.formPrincipal.AdicionaConta(novaConta);
+            string titular = textoTitular.Text;
+            bool ehDevedor = false;
 
-            textoTitular.Text = "";
-            textoNumero.Text = "";
-            MessageBox.Show("Conta criada com sucesso");
+            for(int i = 0; i < 30000; i++)
+            {
+                ehDevedor = this.devedores.Contains(titular);
+            }
+            if (!ehDevedor)
+            {
+                ContaCorrente novaConta = new ContaCorrente();
+                novaConta.Titular = new Cliente(textoTitular.Text);
+                this.formPrincipal.AdicionaConta(novaConta);
+                textoTitular.Text = "";
+                textoNumero.Text = "";
+                MessageBox.Show("Conta criada com sucesso");
+            }
+            else
+            {
+                MessageBox.Show("devedor");
+            }
+            
         }
 
         private void FormCadastroConta_Load(object sender, EventArgs e)

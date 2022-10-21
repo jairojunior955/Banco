@@ -15,6 +15,7 @@ namespace Banco
     public partial class Form1 : Form
     {
         private List<Conta> contas;
+        private Dictionary<string, Conta> dicionario;
 
         public Form1()
         {
@@ -23,6 +24,8 @@ namespace Banco
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.dicionario = new Dictionary<string, Conta>();
+
             this.contas = new List<Conta>();
 
             ContaCorrente c1 = new ContaCorrente();
@@ -39,21 +42,6 @@ namespace Banco
             c3.Titular = new Cliente("Osni");
             c3.Numero = 3;
             this.AdicionaConta(c3);
-
-            Conta c4 = new ContaCorrente();
-            c4.Numero = 4;
-            Conta c5 = new ContaCorrente();
-            c5.Numero = 4;
-            if (c4.Equals(c5))
-            {
-                MessageBox.Show("iguais");
-            }
-            else
-            {
-                MessageBox.Show("Diferentes");
-            }
-            if (c1.Equals("Mensagem")) ;
-            List < Conta > lista = new List<Conta>();
         }
 
         private void botaoDeposito_Click(object sender, EventArgs e)
@@ -77,7 +65,7 @@ namespace Banco
         {
 
             Conta selecionada = (Conta)comboContas.SelectedItem;
-            double valor = Convert.ToDouble(textoValor.Text);          
+            double valor = Convert.ToDouble(textoValor.Text);
             try
             {
                 selecionada.Saca(valor);
@@ -130,6 +118,7 @@ namespace Banco
         {
             this.contas.Add(conta);
             comboContas.Items.Add(conta);
+            this.dicionario.Add(conta.Titular.Nome,conta);
             comboDestinoTransferencia.Items.Add(conta);
             comboContas.DisplayMember = conta.Titular.ToString();
         }
@@ -151,6 +140,16 @@ namespace Banco
             totalizador.Adiciona(conta);
             MessageBox.Show("Total: " + totalizador.Total);           
             
+        }
+
+        private void botaoBusca_Click(object sender, EventArgs e)
+        {
+            string nomeTitular = textoBuscaTitular.Text;
+            Conta conta = dicionario[nomeTitular];
+
+            textoTitular.Text = conta.Titular.Nome;
+            textoNumero.Text = Convert.ToString(conta.Numero);
+            textoSaldo.Text = Convert.ToString(conta.Saldo);
         }
     }
 }
